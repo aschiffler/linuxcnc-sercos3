@@ -19,23 +19,25 @@ This Code implements two levels additional levels to the stack from the link abo
 
 ## Install ##
 make configure.mk
+
 make
+
 sudo make install
 
 ## Usage ## 
 (assumes at least oneslave drive)
-> halrun
-halcmd: loadrt s3sm # will create thread called sercos-cycle with 2 ms
-halcmd: addf sercos-worker sercos-cycle
-halcmd: start
-# Auto detect slaves and configure the Telegrams (with parameter 'f', see the other parameters in the code s3sm_lc_main.c)
-halcmd: call sercos-conf f
-# switch to velocity control
-halcmd: setp s3sm.0.op_mode_vel 1
-# Value depends on the setting in the drive use the Software IndraWorks to configure the drive
-halcmd: setp s3sm.0.commanded_vel 10
-# !Now Enable Drive!
-halcmd: setp s3sm.power_on 1
+- halcmd: loadrt s3sm 
+//will create thread called sercos-cycle with 2 ms
+- halcmd: addf sercos-worker sercos-cycle
+- halcmd: start
+- halcmd: call sercos-conf f
+// Auto detect slaves and configure the Telegrams (with parameter 'f', see the other parameters in the code s3sm_lc_main.c)
+-halcmd: setp s3sm.0.op_mode_vel 1
+// switch to velocity control
+- halcmd: setp s3sm.0.commanded_vel 10
+// Value depends on the setting in the drive use the Software IndraWorks to configure the drive
+// !Now Enable Drive!
+- halcmd: setp s3sm.power_on 1
 
 
 ## features ##
