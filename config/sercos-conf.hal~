@@ -1,0 +1,14 @@
+net rt2log data_logger.logger_beat => ownanalytics.0.beat => ownanalytics.1.beat => ownanalytics.2.beat => data_logger.active_led
+
+net rt2log_11 ownanalytics.0.avg => data_logger.logger_11
+net rt2log_12 ownanalytics.0.max => data_logger.logger_12
+net rt2log_13 ownanalytics.0.min => data_logger.logger_13
+
+net rt2log_21 ownanalytics.1.avg => data_logger.logger_21
+net rt2log_22 ownanalytics.1.max => data_logger.logger_22
+net rt2log_23 ownanalytics.1.min => data_logger.logger_23
+
+net rt2log_31 ownanalytics.2.avg => data_logger.logger_31
+net rt2log_32 ownanalytics.2.max => data_logger.logger_32
+net rt2log_33 ownanalytics.2.min => data_logger.logger_33
+

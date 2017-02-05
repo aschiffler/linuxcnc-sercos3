@@ -1,0 +1,22 @@
+loadrt s3sm
+loadrt trivkins
+loadrt tp
+loadrt [EMCMOT]EMCMOT base_period_nsec=[EMCMOT]BASE_PERIOD servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[TRAJ]AXES kins=trivkins tp=tp
+
+addf sercos-worker sercos-cycle
+addf motion-command-handler sercos-cycle
+addf motion-controller sercos-cycle
+
+net error_0 s3sm.0.slave_error => axis.0.amp-fault-in
+net error_1 s3sm.1.slave_error => axis.1.amp-fault-in
+net error_2 s3sm.2.slave_error => axis.2.amp-fault-in
+
+net feedback_0 s3sm.0.pos => axis.0.motor-pos-fb
+net feedback_1 s3sm.1.pos => axis.1.motor-pos-fb
+net feedback_2 s3sm.2.pos => axis.2.motor-pos-fb
+
+net cmd_0 axis.0.motor-pos-cmd => s3sm.0.commanded_pos
+net cmd_1 axis.1.motor-pos-cmd => s3sm.1.commanded_pos
+net cmd_2 axis.2.motor-pos-cmd => s3sm.2.commanded_pos
+
+net power_on axis.0.amp-enable-out => s3sm.power_on

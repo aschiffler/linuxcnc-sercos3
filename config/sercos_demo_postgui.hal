@@ -1,0 +1,13 @@
+net error_0 gladevcp.slave_err1
+net error_1 gladevcp.slave_err2
+net error_2 gladevcp.slave_err3
+
+
+net show_rdy1 s3sm.0.slave_ready => gladevcp.slave_ready1 => iocontrol.0.emc-enable-in
+net show_rdy2 s3sm.1.slave_ready => gladevcp.slave_ready2
+net show_rdy3 s3sm.2.slave_ready => gladevcp.slave_ready3
+
+
+net act_ph s3sm.act_phase => gladevcp.act_phase
+net num_sl s3sm.active_slaves => gladevcp.num_slaves
+net jitt s3sm.jitter_us => gladevcp.jitter
